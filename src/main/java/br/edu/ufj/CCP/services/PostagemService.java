@@ -16,22 +16,36 @@ import lombok.AllArgsConstructor;
 @Service
 public class PostagemService {
 	
-	private PostagemDAO postagemDAO;
+	private PostagemDAO postDAO;
 	
 	@Transactional
 	public Page<PostagemDTO> findAll(Pageable pageable){
-		Page<Postagem> result = postagemDAO.findAll(pageable);
+		Page<Postagem> result = postDAO.findAll(pageable);
 		return result.map(obj -> new PostagemDTO(obj));
 	}
     @Transactional
     public Optional<PostagemDTO> findById(Integer id){
-    	Optional<Postagem> result = postagemDAO.findById(id);
+    	Optional<Postagem> result = postDAO.findById(id);
     	return result.map(obj -> new PostagemDTO(obj));
     }
     
     @Transactional
     public Optional<PostagemDTO> findByTitle(String titulo){
-    	Optional<Postagem> result = postagemDAO.findByTitle(titulo);
+    	Optional<Postagem> result = postDAO.findByTitulo(titulo);
     	return result.map(obj -> new PostagemDTO(obj)); 
     	}
+    
+    @Transactional
+	public PostagemDTO save(Postagem obj) {
+		return new PostagemDTO(postDAO.save(obj));
+	}
+
+	@Transactional
+	public void deleteById(Integer id) {
+		postDAO.deleteById(id);
+	}
+
+	public boolean existById(Integer id) {
+		return postDAO.existsById(id);
+	}
 }

@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "usuario")
@@ -56,6 +54,15 @@ public class Usuario implements Serializable {
 	@OneToMany
 	@JoinColumn(name= "usuarioComentario")
 	private List<Comentarios> comentarios;
+
+	public Usuario(int codigo_user, String nome, String email, int senha, int idade) {
+		super();
+		this.codigo_user = codigo_user;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.idade = idade;
+	}
 	
-	//private int pacote (colocar depois)
+	
 }

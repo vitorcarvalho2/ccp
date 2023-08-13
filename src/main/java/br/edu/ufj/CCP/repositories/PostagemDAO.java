@@ -8,6 +8,6 @@ import br.edu.ufj.CCP.models.Postagem;
 
 public interface PostagemDAO extends JpaRepository<Postagem, Integer> {
 
-	Optional<Postagem> findByTitle(String titulo);
+	Optional<Postagem> findByTitulo(String titulo);
 
 }

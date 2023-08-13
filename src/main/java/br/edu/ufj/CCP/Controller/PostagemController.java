@@ -4,13 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufj.CCP.dtos.PostagemDTO;
+import br.edu.ufj.CCP.models.Postagem;
 import br.edu.ufj.CCP.services.PostagemService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/ccp/postagem")
@@ -36,5 +42,33 @@ public class PostagemController {
 		return service.findByTitle(titulo)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
+	}
+	@PostMapping
+	public ResponseEntity<PostagemDTO> salvar(@RequestBody Postagem obj){
+		@Valid PostagemDTO objDTO = service.save(obj);
+		return ResponseEntity.created(null).body(objDTO);
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<PostagemDTO> atualizar(@Valid @PathVariable Integer id,@RequestBody Postagem obj){
+	if(!service.existById(id)) {
+		return ResponseEntity.notFound().build();
+	}
+	obj.setCodigo_post(id);
+	
+	PostagemDTO objDTO = service.save(obj);
+	
+	return ResponseEntity.ok(objDTO);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+		if (!service.existById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		service.deleteById(id);
+		return ResponseEntity.noContent().build();
+		
 	}
 }

@@ -27,10 +27,9 @@ public class PostagemDTO implements Serializable {
 	@EqualsAndHashCode.Include
 	private int codigo_post;
 	
-	@NotBlank
 	private Categoria categoria;
 	
-    @NotBlank
+ 
 	private Usuario usuario;
     
 	@NotBlank
@@ -38,15 +37,15 @@ public class PostagemDTO implements Serializable {
 	private String titulo;
 	
 	@NotBlank
-	private int post;
+	private String post;
 	
 	@NotBlank
 	private List<Comentarios> comentarios;
 
 	public PostagemDTO(Postagem obj) {
 		this.codigo_post = obj.getCodigo_post();
-		this.categoria = obj.getCategoria();
-		this.usuario = obj.getUsuario();
+		//this.categoria = obj.getCategoria();
+		//this.usuario = obj.getUsuario();
 		this.titulo = obj.getTitulo();
 		this.post = obj.getPost();
 		this.comentarios = obj.getComentarios();

@@ -14,7 +14,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "postagem")
@@ -49,11 +47,22 @@ public class Postagem implements Serializable {
 	private String titulo;
 	
 	@Column(name = "post_post", nullable = false)
-	private int post;
+	private String post;
 	
 	@OneToMany
 	@JoinColumn(name = "comentarioPostagem")
 	@JsonIgnore
-	private List<Comentarios> comentarios; 
+	private List<Comentarios> comentarios;
+
+	public Postagem(int codigo_post,/* Categoria categoria,Usuario usuario,*/ String titulo, String post) {
+		super();
+		this.codigo_post = codigo_post;
+		//this.categoria = categoria;
+		//this.usuario = usuario;
+		this.titulo = titulo;
+		this.post = post;
+	} 
+	
+	
 	
 }
