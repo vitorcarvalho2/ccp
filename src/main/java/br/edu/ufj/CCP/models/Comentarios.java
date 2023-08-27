@@ -30,7 +30,7 @@ public class Comentarios implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_comm", nullable = false)
-	private int codigo_Comentario;
+	private int codigo;
 	
 	@Column(name = "texto_comm", nullable = false)
 	private String texto;
