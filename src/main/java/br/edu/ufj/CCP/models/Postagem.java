@@ -33,7 +33,7 @@ public class Postagem implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_post")	
-    private int codigo_post;
+    private int codigo;
 	
 	@ManyToOne
 	@JoinColumn(name="categoriaPostagem")
@@ -54,11 +54,11 @@ public class Postagem implements Serializable {
 	@JsonIgnore
 	private List<Comentarios> comentarios;
 
-	public Postagem(int codigo_post,/* Categoria categoria,Usuario usuario,*/ String titulo, String post) {
-		super();
-		this.codigo_post = codigo_post;
-		//this.categoria = categoria;
-		//this.usuario = usuario;
+	public Postagem(int codigo,Categoria categoria,Usuario usuario, String titulo, String post) {
+	
+		this.codigo = codigo;
+		this.categoria = categoria;
+		this.usuario = usuario;
 		this.titulo = titulo;
 		this.post = post;
 	} 

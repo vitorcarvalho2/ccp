@@ -1,10 +1,10 @@
 package br.edu.ufj.CCP.dtos;
 
 import java.io.Serializable;
+import java.util.List;
 
-import br.edu.ufj.CCP.models.Comentarios;
+import br.edu.ufj.CCP.models.Categoria;
 import br.edu.ufj.CCP.models.Postagem;
-import br.edu.ufj.CCP.models.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,27 +17,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ComentariosDTO implements Serializable {
-	// fazer esse
+public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EqualsAndHashCode.Include
 	private int codigo;
 	
 	@NotBlank
-	private String texto;
+	private String categoria_cat;
 	
-	@NotBlank
-	private Postagem postagem;
+    private List<Postagem> postagem;
 	
-	@NotBlank
-	private Usuario usuario;
-	
-	public ComentariosDTO(Comentarios obj) {
+	public CategoriaDTO(Categoria obj) {
 		this.codigo = obj.getCodigo();
-		this.texto = obj.getTexto();
-		this.postagem = obj.getPostagem();
-		this.usuario = obj.getUsuario();
+		this.categoria_cat = obj.getCategoria_cat();
 	}
 
 }

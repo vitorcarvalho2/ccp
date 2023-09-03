@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+// entre cateoria e postagem a um many to many. olhar no github na aula 15
 
 @Getter
 @Setter
@@ -32,15 +32,7 @@ public class Categoria implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_Cat")
-	private int codigo_Cat; 
-	
-	/*
-	@Column(name = "linguagem_Cat")
-	private String Linguagem;
-	
-	@Column(name = "status_Cat")
-	private int Status;//1- finalizado  2- incompleto
-	*/
+	private int codigo; 
 	
 	@Column(name = "categoria_cat")
 	private String categoria_cat;
@@ -50,9 +42,9 @@ public class Categoria implements Serializable {
 	@JsonIgnore
 	private List<Postagem> postagens;
 
-	public Categoria(int codigo_Cat, String categoria_cat) {
-		super();
-		this.codigo_Cat = codigo_Cat;
+	public Categoria(int codigo, String categoria_cat) {
+
+		this.codigo = codigo;
 		this.categoria_cat = categoria_cat;
 	}
 	

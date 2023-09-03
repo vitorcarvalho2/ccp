@@ -13,60 +13,54 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ufj.CCP.dtos.PostagemDTO;
-import br.edu.ufj.CCP.models.Postagem;
-import br.edu.ufj.CCP.services.PostagemService;
+import br.edu.ufj.CCP.dtos.ComentariosDTO;
+import br.edu.ufj.CCP.models.Comentarios;
+import br.edu.ufj.CCP.models.Usuario;
+import br.edu.ufj.CCP.services.ComentariosService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/ccp/postagem")
-public class PostagemController {
+@RequestMapping("/v1/ccp/Comentarios")
+public class CategoriaController {
 
 	@Autowired
-	private PostagemService service;
+	private ComentariosService service;
 	
-	//@Operation(summary = "Busca todos as postagens por id")
 	@GetMapping
-	public ResponseEntity<Page<PostagemDTO>> buscartodos(Pageable pageable){
+	public ResponseEntity<Page<ComentariosDTO>> buscartodos(Pageable pageable){
 		return ResponseEntity.ok(service.findAll(pageable));
 	}
 	
-	//@Operation(summary = "Busca as postagens por id")
 	@GetMapping("/id/{id}")
-	public ResponseEntity<PostagemDTO> buscarum(@PathVariable Integer id){
+	public ResponseEntity<ComentariosDTO> buscarum(@PathVariable Integer id){
 		return service.findById(id)
 				.map(ResponseEntity :: ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
-	//@Operation(summary = "Busca todos as postagens por titulo")
-	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<PostagemDTO> buscarTitulo(@PathVariable String titulo){
-		return service.findByTitle(titulo)
+	
+	@GetMapping("/usuario/{usuario}")
+	public ResponseEntity<ComentariosDTO> buscarUsuario(@PathVariable Usuario usuario){
+		return service.findByUser(usuario)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
-	//@Operation(summary = "Insere postagens por id")
 	@PostMapping
-	public ResponseEntity<PostagemDTO> salvar(@RequestBody Postagem obj){
-		@Valid PostagemDTO objDTO = service.save(obj);
+	public ResponseEntity<ComentariosDTO> salvar(@RequestBody Comentarios obj){
+		@Valid ComentariosDTO objDTO = service.save(obj);
 		return ResponseEntity.created(null).body(objDTO);
 	}
-    
-	//@Operation(summary = "Edita postagens por id")
+
 	@PutMapping("/{id}")
-	public ResponseEntity<PostagemDTO> atualizar(@Valid @PathVariable Integer id,@RequestBody Postagem obj){
+	public ResponseEntity<ComentariosDTO> atualizar(@Valid @PathVariable Integer id,@RequestBody Comentarios obj){
 	if(!service.existById(id)) {
 		return ResponseEntity.notFound().build();
 	}
 	obj.setCodigo(id);
 	
-	PostagemDTO objDTO = service.save(obj);
+	ComentariosDTO objDTO = service.save(obj);
 	
 	return ResponseEntity.ok(objDTO);
 	}
-
-	//@Operation(summary = "Deleta postagens por id")
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Integer id) {

@@ -31,19 +31,17 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_usuario")
-	private int codigo_user;
+	private int codigo;
 	
 	@Column( name= "nome_usuario",nullable = false)
 	private String nome;
+	
 	
 	@Column(name = "email_usuario", nullable = false)
 	private String email;
 
 	@Column(name = "senha_usuario",nullable = false)
-	private int senha;
-	
-	@Column(name = "idade_usuario",nullable = false)
-	private int idade;
+	private String senha;
 	
 	
 	@OneToMany
@@ -55,13 +53,12 @@ public class Usuario implements Serializable {
 	@JoinColumn(name= "usuarioComentario")
 	private List<Comentarios> comentarios;
 
-	public Usuario(int codigo_user, String nome, String email, int senha, int idade) {
-		super();
-		this.codigo_user = codigo_user;
+	public Usuario(int codigo, String nome, String email, String senha) {
+		
+		this.codigo = codigo;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.idade = idade;
 	}
 	
 	

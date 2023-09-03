@@ -3,13 +3,11 @@ package br.edu.ufj.CCP.dtos;
 import java.io.Serializable;
 import java.util.List;
 
-import br.edu.ufj.CCP.models.Categoria;
 import br.edu.ufj.CCP.models.Comentarios;
 import br.edu.ufj.CCP.models.Postagem;
 import br.edu.ufj.CCP.models.Usuario;
-import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -22,37 +20,33 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class PostagemDTO implements Serializable {
+public class UsuarioDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EqualsAndHashCode.Include
 	private int codigo;
-	
-	@NotNull
-	@Valid
-	private Categoria categoria;
-	
-    @NotNull
-    @Valid
-	private Usuario usuario;
     
 	@NotBlank
 	@Size(max = 60)
-	private String titulo;
+	private String nome;
 	
 	@NotBlank
-	private String post;
+	@Email
+	private String email;
+	
+	@NotBlank
+	private String senha;
+	
+	private List<Postagem> postagens;
 	
 	private List<Comentarios> comentarios;
 
-	public PostagemDTO(Postagem obj) {
+	public UsuarioDTO(Usuario obj) {
 		this.codigo = obj.getCodigo();
-		this.categoria = obj.getCategoria();
-		this.usuario = obj.getUsuario();
-		this.titulo = obj.getTitulo();
-		this.post = obj.getPost();
-		this.comentarios = obj.getComentarios();
+		this.nome = obj.getNome();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
 	}
 
 	

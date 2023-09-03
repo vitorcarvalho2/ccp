@@ -19,6 +19,7 @@ public class PostagemService {
 	private PostagemDAO postDAO;
 	
 	@Transactional
+	
 	public Page<PostagemDTO> findAll(Pageable pageable){
 		Page<Postagem> result = postDAO.findAll(pageable);
 		return result.map(obj -> new PostagemDTO(obj));
