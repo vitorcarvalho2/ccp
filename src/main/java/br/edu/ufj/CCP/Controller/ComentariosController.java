@@ -20,7 +20,7 @@ import br.edu.ufj.CCP.services.ComentariosService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/ccp/Comentarios")
+@RequestMapping("/v1/ccp/comentarios")
 public class ComentariosController {
 
 	@Autowired

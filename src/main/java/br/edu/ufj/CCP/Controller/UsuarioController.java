@@ -19,7 +19,7 @@ import br.edu.ufj.CCP.services.UsuarioService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/ccp/Usuario")
+@RequestMapping("/v1/ccp/usuario")
 public class UsuarioController {
 
 	@Autowired

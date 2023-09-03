@@ -13,51 +13,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ufj.CCP.dtos.ComentariosDTO;
-import br.edu.ufj.CCP.models.Comentarios;
-import br.edu.ufj.CCP.models.Usuario;
-import br.edu.ufj.CCP.services.ComentariosService;
+import br.edu.ufj.CCP.dtos.CategoriaDTO;
+import br.edu.ufj.CCP.models.Categoria;
+import br.edu.ufj.CCP.services.CategoriaService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/ccp/Comentarios")
+@RequestMapping("/v1/ccp/categoria")
 public class CategoriaController {
 
 	@Autowired
-	private ComentariosService service;
+	private CategoriaService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<ComentariosDTO>> buscartodos(Pageable pageable){
+	public ResponseEntity<Page<CategoriaDTO>> buscartodos(Pageable pageable){
 		return ResponseEntity.ok(service.findAll(pageable));
 	}
 	
 	@GetMapping("/id/{id}")
-	public ResponseEntity<ComentariosDTO> buscarum(@PathVariable Integer id){
+	public ResponseEntity<CategoriaDTO> buscarum(@PathVariable Integer id){
 		return service.findById(id)
 				.map(ResponseEntity :: ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping("/usuario/{usuario}")
-	public ResponseEntity<ComentariosDTO> buscarUsuario(@PathVariable Usuario usuario){
-		return service.findByUser(usuario)
-				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
-	}
+	
 	@PostMapping
-	public ResponseEntity<ComentariosDTO> salvar(@RequestBody Comentarios obj){
-		@Valid ComentariosDTO objDTO = service.save(obj);
+	public ResponseEntity<CategoriaDTO> salvar(@RequestBody Categoria obj){
+		@Valid CategoriaDTO objDTO = service.save(obj);
 		return ResponseEntity.created(null).body(objDTO);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ComentariosDTO> atualizar(@Valid @PathVariable Integer id,@RequestBody Comentarios obj){
+	public ResponseEntity<CategoriaDTO> atualizar(@Valid @PathVariable Integer id,@RequestBody Categoria obj){
 	if(!service.existById(id)) {
 		return ResponseEntity.notFound().build();
 	}
 	obj.setCodigo(id);
 	
-	ComentariosDTO objDTO = service.save(obj);
+	CategoriaDTO objDTO = service.save(obj);
 	
 	return ResponseEntity.ok(objDTO);
 	}

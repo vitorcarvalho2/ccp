@@ -29,7 +29,7 @@ public class CcpApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	     
+	   /*  
 		Categoria cat1 = new Categoria(1,"Duvida");
 		catDAO.save(cat1);
 		Categoria cat2 = new Categoria(2,"Completo");
@@ -42,6 +42,7 @@ public class CcpApplication implements CommandLineRunner {
 		postDAO.save(post1);
 		Comentarios comm1 = new Comentarios(1,post1,user1,"muito poggers");
 		commDAO.save(comm1);
+		*/
 	}
 
 }

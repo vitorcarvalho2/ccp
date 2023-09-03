@@ -36,13 +36,11 @@ public class Usuario implements Serializable {
 	@Column( name= "nome_usuario",nullable = false)
 	private String nome;
 	
-	
 	@Column(name = "email_usuario", nullable = false)
 	private String email;
 
 	@Column(name = "senha_usuario",nullable = false)
 	private String senha;
-	
 	
 	@OneToMany
 	@JoinColumn(name= "pessoaPostagem")

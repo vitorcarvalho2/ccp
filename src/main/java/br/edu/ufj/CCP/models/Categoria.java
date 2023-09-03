@@ -24,7 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "usuario")
+@Table(name = "categoria")
 public class Categoria implements Serializable {
 	 private static final long serialVersionUID = 1L;
 		
@@ -38,7 +38,7 @@ public class Categoria implements Serializable {
 	private String categoria_cat;
 	
 	@OneToMany
-	@JoinColumn( name= "categoriaPostagem")
+	@JoinColumn(name= "categoriaPostagem")
 	@JsonIgnore
 	private List<Postagem> postagens;
 

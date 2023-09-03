@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.edu.ufj.CCP.dtos.UsuarioDTO;
+import br.edu.ufj.CCP.exceptionhandler.BusinessException;
 import br.edu.ufj.CCP.models.Usuario;
 import br.edu.ufj.CCP.repositories.UsuarioDAO;
 import jakarta.transaction.Transactional;
@@ -30,7 +31,25 @@ public class UsuarioService {
     }
     
     @Transactional
+    public Optional<UsuarioDTO> findByEmail(String email){
+    	Optional<Usuario> result = userDAO.findByEmail(email);
+    	return result.map(obj -> new UsuarioDTO(obj));
+    }
+    
+    @Transactional
+    public Optional<UsuarioDTO> findByNome(String nome){
+    	Optional<Usuario> result = userDAO.findByNome(nome);
+    	return result.map(obj -> new UsuarioDTO(obj));
+    }
+    
+    @Transactional
 	public UsuarioDTO save(Usuario obj) {
+    	boolean emailExists = userDAO.findByEmail(obj.getEmail())
+    			.stream()
+    			.anyMatch(objResult -> !objResult.equals(obj));
+    	if (emailExists) {
+    		throw new BusinessException("E-mail já existente!");
+    	}
 		return new UsuarioDTO(userDAO.save(obj));
 	}
 
