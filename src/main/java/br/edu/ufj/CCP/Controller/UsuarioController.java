@@ -37,6 +37,20 @@ public class UsuarioController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping("/email/{email}")
+	public ResponseEntity<UsuarioDTO> buscarporEmail(@PathVariable String email){
+		return service.findByEmail(email)
+				.map(ResponseEntity :: ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<UsuarioDTO> buscarporNome(@PathVariable String nome){
+		return service.findByNome(nome)
+				.map(ResponseEntity :: ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
 	@PostMapping
 	public ResponseEntity<UsuarioDTO> salvar(@RequestBody Usuario obj){
 		@Valid UsuarioDTO objDTO = service.save(obj);

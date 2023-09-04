@@ -36,11 +36,13 @@ public class Postagem implements Serializable {
     private int codigo;
 	
 	@ManyToOne
-	@JoinColumn(name="categoriaPostagem")
+	@JoinColumn(name="categoria_Postagem")
+	@JsonIgnore
 	private Categoria categoria;
 	
 	@ManyToOne
-	@JoinColumn(name= "pessoaPostagem")
+	@JoinColumn(name= "pessoa_Postagem")
+	@JsonIgnore
 	private Usuario usuario;
     
 	@Column(name = "titulo_post", nullable = false)
@@ -50,7 +52,7 @@ public class Postagem implements Serializable {
 	private String post;
 	
 	@OneToMany
-	@JoinColumn(name = "comentarioPostagem")
+	@JoinColumn(name = "comentario_Postagem")
 	@JsonIgnore
 	private List<Comentarios> comentarios;
 

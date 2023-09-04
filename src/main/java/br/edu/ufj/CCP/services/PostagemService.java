@@ -31,7 +31,7 @@ public class PostagemService {
     }
     
     @Transactional
-    public Optional<PostagemDTO> findByTitle(String titulo){
+    public Optional<PostagemDTO> findByTitulo(String titulo){
     	Optional<Postagem> result = postDAO.findByTitulo(titulo);
     	return result.map(obj -> new PostagemDTO(obj)); 
     	}

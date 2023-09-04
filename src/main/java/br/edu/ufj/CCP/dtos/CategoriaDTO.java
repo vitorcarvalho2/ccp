@@ -24,13 +24,14 @@ public class CategoriaDTO implements Serializable {
 	private int codigo;
 	
 	@NotBlank
-	private String categoria_cat;
+	private String descricao;
 	
     private List<Postagem> postagem;
 	
 	public CategoriaDTO(Categoria obj) {
 		this.codigo = obj.getCodigo();
-		this.categoria_cat = obj.getCategoria_cat();
+		this.descricao = obj.getDescricao();
+		this.postagem = obj.getPostagens();
 	}
 
 }

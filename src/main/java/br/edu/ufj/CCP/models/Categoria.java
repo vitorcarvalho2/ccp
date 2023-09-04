@@ -31,21 +31,21 @@ public class Categoria implements Serializable {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codigo_Cat")
+	@Column(name = "codigo_cat")
 	private int codigo; 
 	
-	@Column(name = "categoria_cat")
-	private String categoria_cat;
+	@Column(name = "categoria_descricao")
+	private String descricao;
 	
 	@OneToMany
-	@JoinColumn(name= "categoriaPostagem")
+	@JoinColumn(name= "categoria_Postagem")
 	@JsonIgnore
 	private List<Postagem> postagens;
 
-	public Categoria(int codigo, String categoria_cat) {
+	public Categoria(int codigo, String descricao) {
 
 		this.codigo = codigo;
-		this.categoria_cat = categoria_cat;
+		this.descricao = descricao;
 	}
 	
 	

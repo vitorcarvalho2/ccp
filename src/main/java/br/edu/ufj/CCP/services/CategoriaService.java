@@ -23,10 +23,16 @@ public class CategoriaService {
 		Page<Categoria> result = catDAO.findAll(pageable);
 		return result.map(obj -> new CategoriaDTO(obj));
 	}
+	
     @Transactional
-
     public Optional<CategoriaDTO> findById(Integer id){
     	Optional<Categoria> result = catDAO.findById(id);
+    	return result.map(obj -> new CategoriaDTO(obj));
+    }
+    
+    @Transactional
+    public Optional<CategoriaDTO> findByDescricao(String descricao){
+    	Optional<Categoria> result = catDAO.findByDescricao(descricao);
     	return result.map(obj -> new CategoriaDTO(obj));
     }
     

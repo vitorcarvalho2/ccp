@@ -37,10 +37,16 @@ public class CategoriaController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping("/descricao/{descricao}")
+	public ResponseEntity<CategoriaDTO> buscardescricao(@PathVariable String descricao){
+		return service.findByDescricao(descricao)
+				.map(ResponseEntity :: ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
 	
 	@PostMapping
 	public ResponseEntity<CategoriaDTO> salvar(@RequestBody Categoria obj){
-		@Valid CategoriaDTO objDTO = service.save(obj);
+		CategoriaDTO objDTO = service.save(obj);
 		return ResponseEntity.created(null).body(objDTO);
 	}
 

@@ -3,6 +3,8 @@ package br.edu.ufj.CCP.dtos;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import br.edu.ufj.CCP.models.Comentarios;
 import br.edu.ufj.CCP.models.Postagem;
 import br.edu.ufj.CCP.models.Usuario;
@@ -19,8 +21,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class UsuarioDTO implements Serializable {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+public class UsuarioDTO extends RepresentationModel<UsuarioDTO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

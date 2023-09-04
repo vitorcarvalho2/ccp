@@ -43,12 +43,13 @@ public class Usuario implements Serializable {
 	private String senha;
 	
 	@OneToMany
-	@JoinColumn(name= "pessoaPostagem")
+	@JoinColumn(name= "pessoa_Postagem")
 	@JsonIgnore
 	private List<Postagem> postagens;
 	
 	@OneToMany
-	@JoinColumn(name= "usuarioComentario")
+	@JoinColumn(name= "usuario_Comentario")
+	@JsonIgnore
 	private List<Comentarios> comentarios;
 
 	public Usuario(int codigo, String nome, String email, String senha) {
@@ -57,6 +58,7 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		
 	}
 	
 	

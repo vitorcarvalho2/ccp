@@ -2,6 +2,8 @@ package br.edu.ufj.CCP.models;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,11 +33,13 @@ public class Comentarios implements Serializable {
 	private int codigo;
 	
 	@ManyToOne
-	@JoinColumn(name= "comentarioPostagem")
+	@JoinColumn(name= "comentario_Postagem")
+	@JsonIgnore
 	private Postagem postagem;
 	
 	@ManyToOne
-	@JoinColumn(name= "usuarioComentario")
+	@JoinColumn(name= "usuarioC_omentario")
+	@JsonIgnore
 	private Usuario usuario;
 	
 	@Column(name = "texto_comm", nullable = false)
@@ -46,8 +50,8 @@ public class Comentarios implements Serializable {
 	
 	public Comentarios(int codigo,Postagem postagem,Usuario usuario,String texto) {
 		this.codigo = codigo;
-		this.texto = texto;
 		this.postagem = postagem;
 		this.usuario = usuario;
+		this.texto = texto;
 	}
 }

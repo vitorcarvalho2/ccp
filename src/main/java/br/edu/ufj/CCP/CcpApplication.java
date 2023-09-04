@@ -3,7 +3,9 @@ package br.edu.ufj.CCP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import br.edu.ufj.CCP.models.Categoria;
 import br.edu.ufj.CCP.models.Comentarios;
@@ -14,13 +16,18 @@ import br.edu.ufj.CCP.repositories.ComentariosDAO;
 import br.edu.ufj.CCP.repositories.PostagemDAO;
 import br.edu.ufj.CCP.repositories.UsuarioDAO;
 
+@EnableAutoConfiguration
+@ComponentScan
 @SpringBootApplication
 public class CcpApplication implements CommandLineRunner {
 	
-    @Autowired
-    private PostagemDAO postDAO;
-    private UsuarioDAO userDAO;
+	@Autowired
+    private PostagemDAO postDAO; 
+	@Autowired
+    private UsuarioDAO userDAO; 
+	@Autowired
     private ComentariosDAO commDAO;
+	@Autowired
     private CategoriaDAO catDAO;
     
 	public static void main(String[] args) {
@@ -29,7 +36,7 @@ public class CcpApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	   /*  
+	     
 		Categoria cat1 = new Categoria(1,"Duvida");
 		catDAO.save(cat1);
 		Categoria cat2 = new Categoria(2,"Completo");
@@ -38,11 +45,11 @@ public class CcpApplication implements CommandLineRunner {
 		catDAO.save(cat3);
 		Usuario user1 = new Usuario(1,"vitor","vitorobala@gmail.com","vitinamaamaria");
 		userDAO.save(user1);
-		Postagem post1 = new Postagem(1,cat1,user1,"abuble","import vitor");
+		Postagem post1 = new Postagem(1,cat2,user1,"abuble","import vitor");
 		postDAO.save(post1);
 		Comentarios comm1 = new Comentarios(1,post1,user1,"muito poggers");
 		commDAO.save(comm1);
-		*/
+		
 	}
 
 }

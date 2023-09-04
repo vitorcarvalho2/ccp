@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufj.CCP.dtos.ComentariosDTO;
 import br.edu.ufj.CCP.models.Comentarios;
+import br.edu.ufj.CCP.models.Postagem;
 import br.edu.ufj.CCP.models.Usuario;
 import br.edu.ufj.CCP.services.ComentariosService;
 import jakarta.validation.Valid;
@@ -40,10 +41,18 @@ public class ComentariosController {
 	
 	@GetMapping("/usuario/{usuario}")
 	public ResponseEntity<ComentariosDTO> buscarUsuario(@PathVariable Usuario usuario){
-		return service.findByUser(usuario)
+		return service.findByUsuario(usuario)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
+	
+	@GetMapping("/postagem/{postagem}")
+	public ResponseEntity<ComentariosDTO> buscarPostagem(@PathVariable Postagem postagem){
+		return service.findByPostagem(postagem)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
 	@PostMapping
 	public ResponseEntity<ComentariosDTO> salvar(@RequestBody Comentarios obj){
 		@Valid ComentariosDTO objDTO = service.save(obj);

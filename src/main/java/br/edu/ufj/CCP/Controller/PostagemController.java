@@ -41,7 +41,7 @@ public class PostagemController {
 	//@Operation(summary = "Busca todos as postagens por titulo")
 	@GetMapping("/titulo/{titulo}")
 	public ResponseEntity<PostagemDTO> buscarTitulo(@PathVariable String titulo){
-		return service.findByTitle(titulo)
+		return service.findByTitulo(titulo)
 				.map(ResponseEntity::ok)
 				.orElse(ResponseEntity.notFound().build());
 	}
