@@ -42,7 +42,6 @@ public class Postagem implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name= "pessoa_Postagem")
-	@JsonIgnore
 	private Usuario usuario;
     
 	@Column(name = "titulo_post", nullable = false)

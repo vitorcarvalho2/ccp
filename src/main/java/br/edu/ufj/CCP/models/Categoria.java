@@ -43,7 +43,6 @@ public class Categoria implements Serializable {
 	private List<Postagem> postagens;
 
 	public Categoria(int codigo, String descricao) {
-
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
